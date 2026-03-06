@@ -3,9 +3,56 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- document title -->
   <title>Github Issue Tracker</title>
+  <!-- favicon link -->
+  <link rel="icon" href="./assets/Aperture.png" type="image/x-icon">
+
+  <!-- daisyUI and Tailwind CSS CDN links -->
+  <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+  <!-- import google font link (Geist) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@100..900&display=swap" rel="stylesheet">
+
+  <!-- fontawesome CDN link -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <!-- stylesheet css link  -->
+   <link rel="stylesheet" href="style.css">
 </head>
 <body>
+<!-- sign in section start -->
+ <section class="bg-base-200 flex items-center justify-center min-h-screen">
+  <fieldset class="fieldset bg-base-100 border-base-300 rounded-box w-lg border p-8 shadow-md">
+    <div class="flex flex-col items-center justify-center space-y-2.5 mb-2.5">
+      <div>
+        <img src="./assets/github-logo.png" alt="GitHub Logo">
+      </div>
+      <div class="text-center space-y-1">
+        <h2 class="text-2xl font-semibold">GitHub Issues Tracker</h2>
+        <p class="text-base-content/50 font-medium">Sign in to manage your issues</p>
+      </div>
+    </div>
+    <label class="label font-semibold text-gray-950">Username</label>
+    <input type="email" class="input rounded-lg w-full" placeholder="Enter Username" />
+    <span class="text-purple-500 mb-2.5">Default: admin</span>
+
+    <label class="label font-semibold text-gray-950">Password</label>
+    <input type="password" class="input rounded-lg w-full" placeholder="Enter Password" />
+    <span class="text-purple-500">Default: admin123</span>
+
+    <button class="btn btn-primary rounded-lg mt-4">Sign in</button>
+    <div class="divider font-medium">OR</div>
+    <p class="text-base-content/50 font-medium text-center">Demo Credentials:</p>
+    <div class="bg-base-200 p-6 text-center rounded-lg">
+      <p><span class="font-bold">Username:</span> admin</p>
+      <p><span class="font-bold">Password:</span> admin123</p>
+    </div>
+  </fieldset>
+ </section>
+<!-- sign in section end -->
 
 </body>
 </html>
