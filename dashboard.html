@@ -51,20 +51,20 @@
   <section class="bg-[#F8FAFC] py-10">
     <div class="bg-white w-11/12 mx-auto rounded-lg shadow-sm">
       <div class="flex items-center justify-start gap-2.5 p-6">
-        <button class="py-1.5 px-2.5 bg-indigo-700 text-white rounded w-32 hover:bg-indigo-800">All</button>
-        <button class="py-1.5 px-2.5 border border-gray-300 text-gray-500 rounded w-32 hover:bg-gray-200">Open</button>
+        <button class="py-1.5 px-2.5 font-semibold bg-indigo-700 text-white rounded w-32 hover:bg-indigo-800">All</button>
+        <button class="py-1.5 px-2.5 font-semibold border-2 border-gray-300 text-gray-500 rounded w-32 hover:bg-gray-200">Open</button>
         <button
-          class="py-1.5 px-2.5 border border-gray-300 text-gray-500 rounded w-32 hover:bg-gray-200">Closed</button>
+          class="py-1.5 px-2.5 font-semibold border-2 border-gray-300 text-gray-500 rounded w-32 hover:bg-gray-200">Closed</button>
       </div>
     </div>
   </section>
   <!-- Tab Section end -->
 
   <section class="bg-[#F8FAFC]">
-    <div class="bg-white w-11/12 mx-auto rounded-lg shadow-sm ">
+    <div class="bg-white w-11/12 mx-auto rounded-lg shadow-md mb-10">
 
       <!-- the issue count Section start -->
-      <div class="flex items-center justify-between border-b border-gray-200">
+      <div class="flex items-center justify-between border-b-2 border-gray-200">
         <div class="flex items-center justify-start gap-2.5 p-6">
           <img class="p-2.5 bg-indigo-100 rounded-full" src="./assets/Aperture.png" alt="Aperture Logo">
           <div>
@@ -84,6 +84,57 @@
         </div>
       </div>
       <!-- the issue count Section end -->
+
+      <!-- the issue list section start -->
+      <div class="p-6">
+        <div id="issue-list" class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-3">
+
+          <!-- Issue Card -->
+          <div class="border-t-4 border-green-400 rounded-xl bg-white shadow-md overflow-hidden">
+            <div class="p-6">
+              <!-- Icon and Priority Badge -->
+              <div class="flex items-start justify-between mb-4">
+                <div class="p-1 bg-green-100 rounded-full flex items-center justify-center">
+                  <img class="w-10 h-10" src="./assets/Open-Status.png" alt="Open Status">
+                </div>
+                <span class="bg-red-100 text-red-600 font-medium px-8 py-1 rounded-full">HIGH</span>
+              </div>
+
+              <!-- Title -->
+              <h3 class="text-lg font-semibold text-gray-900 mb-3">Fix Navigation Menu On Mobile Devices</h3>
+
+              <!-- Description -->
+              <p class="text-gray-500 text-sm mb-4 line-clamp-2">The navigation menu doesn't collapse properly on mobile devices...
+              </p>
+
+              <!-- Labels -->
+              <div class="flex flex-wrap gap-2">
+                <span
+                  class="bg-red-100 text-red-600 border-2 border-red-300 px-3 py-1.5 rounded-full">
+                  <i class="fa-solid fa-bug"></i> BUG
+                </span>
+                <span
+                  class="bg-yellow-100 text-yellow-600 border-2 border-yellow-300 px-3 py-1.5 rounded-full">
+                  <i class="fa-regular fa-circle-question"></i> HELP WANTED
+                </span>
+              </div>
+            </div>
+
+            <!-- Divider line -->
+            <div class="border-t-2 border-gray-200"></div>
+
+            <!-- Issue Number, Author and Date -->
+            <div class="p-6 pt-4">
+              <p class="text-sm text-gray-500 mb-1">#1 by john_doe</p>
+              <p class="text-sm text-gray-500">1/15/2024</p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- the issue list section end -->
+
     </div>
   </section>
 
