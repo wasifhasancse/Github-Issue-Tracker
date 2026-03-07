@@ -19,12 +19,12 @@ const showAllIssues = (allIssuedata) => {
   issuesCount.textContent = `${allIssuedata.length} Issues`;
   allIssuedata.forEach((issueCardData) => {
     const issueCard = document.createElement("div");
-    issueCard.classList.add("cursor-pointer");
+    issueCard.className = `border-t-4 ${issueCardData.status === "open" ? "border-green-400" : "border-purple-400"} rounded-lg bg-white shadow-md cursor-pointer`;
     issueCard.setAttribute("onclick", `showIssueModal(${issueCardData.id})`);
     issueCard.innerHTML = `
 
           <!--High Priority Issue Card -->
-          <div class="border-t-4 ${issueCardData.status === "open" ? "border-green-400" : "border-purple-400"} rounded-lg bg-white shadow-md overflow-hidden">
+          <div class="overflow-hidden flex flex-col justify-between h-full">
             <div class="p-6">
               <!-- Icon and Priority Badge -->
               <div class="flex items-center justify-between mb-4">
@@ -51,13 +51,15 @@ const showAllIssues = (allIssuedata) => {
               </div>
             </div>
 
-            <!-- Divider line -->
-            <div class="border-t-2 border-gray-200"></div>
-
             <!-- Issue Number, Author and Date -->
-            <div class="p-6 pt-4">
+            <div class=" pt-4">
+              <!-- Divider line -->
+              <div class="border-t-2 border-gray-200"></div>
+              
+              <div class="p-6">
               <p class="text-sm text-gray-500 mb-1">#${issueCardData.id} by ${issueCardData.author}</p>
               <p class="text-sm text-gray-500">${issueCardData.createdAt}</p>
+              </div>
             </div>
           </div>
     `;
@@ -133,7 +135,7 @@ const showIssueModal = async (issueId) => {
   const modalContent = document.createElement("div");
   modalContent.innerHTML = `
 
-        <div class="modal-box w-[92%] sm:w-[85%] md:w-full max-w-md sm:max-w-xl md:max-w-2xl lg:max-w-3xl rounded-lg md:rounded-2xl bg-[#F8FAFC] p-4 sm:p-5 md:p-7 lg:p-8 shadow-lg">
+        <div class="modal-box w-11/12 sm:w-[85%] md:w-full max-w-md sm:max-w-xl md:max-w-2xl lg:max-w-3xl rounded-lg md:rounded-2xl bg-[#F8FAFC] p-4 sm:p-5 md:p-7 lg:p-8 shadow-lg mx-auto">
           <h3
             class="text-lg sm:text-2xl md:text-3xl lg:text-4xl font-bold leading-tight md:leading-snug text-gray-900">
             ${issueData.title}
@@ -191,7 +193,7 @@ const showIssueModal = async (issueId) => {
           <div class="mt-4 sm:mt-4.5 md:mt-6 lg:mt-8 flex justify-end">
             <form method="dialog" class="w-auto">
               <button
-                class="btn w-auto h-auto border-0 bg-indigo-700 hover:bg-indigo-800 px-5 sm:px-6 md:px-7 lg:px-8 py-2 md:py-3 lg:py-3 text-sm sm:text-base md:text-lg font-semibold text-white rounded-lg lg:rounded-xl transition-all duration-200">Close</button>
+                class="btn w-auto h-auto border-0 bg-indigo-700 hover:bg-indigo-800 px-4 sm:px-5 md:px-6 lg:px-7 py-1.5 sm:py-2 md:py-2.5 text-xs sm:text-sm md:text-base lg:text-lg font-semibold text-white rounded-md md:rounded-lg lg:rounded-xl transition-all duration-200">Close</button>
             </form>
           </div>
         </div>
