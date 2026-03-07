@@ -1,6 +1,6 @@
-// store all issues data
 const allIssuesContainer = document.getElementById("issue-card-container");
 const issuesCount = document.getElementById("issues-count");
+// store all issues data from API
 let allIssuesData;
 
 // get all issues data from API
@@ -16,8 +16,11 @@ const getAllIssues = async () => {
 // display all issues cards data
 const showAllIssues = (allIssuedata) => {
   allIssuesContainer.innerHTML = "";
+  issuesCount.textContent = `${allIssuedata.length} Issues`;
   allIssuedata.forEach((issueCardData) => {
     const issueCard = document.createElement("div");
+    issueCard.classList.add("cursor-pointer");
+    issueCard.setAttribute("onclick", `showIssueModal(${issueCardData.id})`);
     issueCard.innerHTML = `
 
           <!--High Priority Issue Card -->
@@ -28,7 +31,7 @@ const showAllIssues = (allIssuedata) => {
                 <div class="rounded-full flex items-center justify-center">
                   <img class="w-10 h-10" ${issueCardData.status === "open" ? 'src="./assets/Open-Status.png" alt="Open Status"' : 'src="./assets/Closed-Status.png" alt="Closed Status"'} >
                 </div>
-                <span class="${issueCardData.priority === "high" ? "bg-red-100 text-red-600" : issueCardData.priority === "medium" ? "bg-yellow-100 text-yellow-600" : "bg-gray-100 text-gray-400"} font-medium px-8 py-1 rounded-full capitalize">${issueCardData.priority}</span>
+                <span class="inline-flex rounded-full px-3 md:px-4 lg:px-6 py-1 md:py-1 lg:py-1.5 text-[9px] sm:text-[10px] md:text-xs lg:text-base font-semibold uppercase tracking-wider ${issueCardData.priority === "high" ? "bg-red-100 text-red-600" : issueCardData.priority === "medium" ? "bg-yellow-100 text-yellow-600" : "bg-gray-100 text-gray-400"}">${issueCardData.priority}</span>
               </div>
 
               <!-- Title -->
@@ -106,12 +109,95 @@ const activeTabButton = (buttonId) => {
     "border-indigo-300",
     "hover:bg-indigo-800",
   );
-
+  // set functionality to clicked button and display data based on the button
   buttonId === "all-issues-btn"
     ? getAllIssues()
     : buttonId === "open-issues-btn"
       ? getOpenIssues()
       : getClosedIssues();
+};
+
+// get modal data from API and display in modal
+const showIssueModal = async (issueId) => {
+  // get issue data from API based on the clicked issue card
+  const response = await fetch(
+    `https://phi-lab-server.vercel.app/api/v1/lab/issue/${issueId}`,
+  );
+  const getIssueData = await response.json();
+  const issueData = getIssueData.data;
+
+  // get the modal container
+  const issueModal = document.getElementById("issueCardModal");
+  issueModal.innerHTML = "";
+  // creating modal content dynamically based on the issue data
+  const modalContent = document.createElement("div");
+  modalContent.innerHTML = `
+
+        <div class="modal-box w-[92%] sm:w-[85%] md:w-full max-w-md sm:max-w-xl md:max-w-2xl lg:max-w-3xl rounded-lg md:rounded-2xl bg-[#F8FAFC] p-4 sm:p-5 md:p-7 lg:p-8 shadow-lg">
+          <h3
+            class="text-lg sm:text-2xl md:text-3xl lg:text-4xl font-bold leading-tight md:leading-snug text-gray-900">
+            ${issueData.title}
+          </h3>
+
+          <div
+            class="mt-3 sm:mt-3.5 md:mt-4 lg:mt-5 flex flex-wrap items-center gap-2 sm:gap-2.5 text-xs sm:text-sm md:text-base lg:text-lg text-gray-600">
+            <span
+              class="rounded-full px-2.5 sm:px-3.5 md:px-4 lg:px-5 py-0.5 sm:py-0.5 md:py-1 lg:py-1.5 text-[10px] sm:text-xs md:text-sm lg:text-base font-semibold text-white ${issueData.status === "open" ? 'bg-green-500">Opened' : 'bg-red-500">Closed'}</span>
+            <span class="text-gray-600 hidden sm:inline">&bull;</span>
+            <span class="text-[10px] sm:text-xs md:text-sm lg:text-base">Opened by ${issueData.author}</span>
+            <span class="text-gray-600 hidden sm:inline">&bull;</span>
+            <span class="text-[10px] sm:text-xs md:text-sm lg:text-base">${issueData.createdAt}</span>
+          </div>
+
+          <div class="mt-3 sm:mt-3.5 md:mt-4 lg:mt-5 flex flex-wrap items-center gap-2 md:gap-2.5 lg:gap-3">
+            <span
+              class="inline-flex items-center gap-0.5 sm:gap-1 md:gap-1.5 lg:gap-2 rounded-full border-2 border-red-300 bg-red-100 px-2 sm:px-2.5 md:px-3.5 lg:px-4 py-0.5 sm:py-0.5 md:py-1 lg:py-1.5 text-[8px] sm:text-[9px] md:text-xs lg:text-sm font-semibold text-red-600 uppercase tracking-tight">
+              <i class="fa-solid fa-bug text-[6px] sm:text-[7px] md:text-[8px] lg:text-xs"></i>
+              BUG
+            </span>
+            <span
+              class="inline-flex items-center gap-0.5 sm:gap-1 md:gap-1.5 lg:gap-2 rounded-full border-2 border-yellow-300 bg-yellow-100 px-2 sm:px-2.5 md:px-3.5 lg:px-4 py-0.5 sm:py-0.5 md:py-1 lg:py-1.5 text-[8px] sm:text-[9px] md:text-xs lg:text-sm font-semibold text-yellow-600 uppercase tracking-tight">
+              <i class="fa-regular fa-circle-question text-[6px] sm:text-[7px] md:text-[8px] lg:text-xs"></i>
+              HELP WANTED
+            </span>
+          </div>
+
+          <p
+            class="mt-4 sm:mt-4.5 md:mt-6 lg:mt-7 text-xs sm:text-sm md:text-base lg:text-lg leading-relaxed md:leading-loose text-gray-600">
+            ${issueData.description}
+          </p>
+
+          <div
+            class="mt-4 sm:mt-5 md:mt-6 lg:mt-8 rounded-lg md:rounded-xl lg:rounded-2xl bg-gray-100 p-3 sm:p-4 md:p-5 lg:p-6">
+            <div class="grid grid-cols-1 gap-3 md:gap-4 lg:gap-6 md:grid-cols-2">
+              <div>
+                <p
+                  class="text-[11px] sm:text-xs md:text-sm lg:text-lg text-gray-500 mb-1 md:mb-1.5 lg:mb-2 font-medium">
+                  Assignee:</p>
+                <p class="text-sm sm:text-base md:text-lg lg:text-xl font-bold text-gray-800">
+                  ${issueData.assignee.length === 0 ? "No One Assignee" : issueData.assignee}
+                </p>
+              </div>
+              <div>
+                <p
+                  class="text-[11px] sm:text-xs md:text-sm lg:text-lg text-gray-500 mb-1 md:mb-1.5 lg:mb-2 font-medium">
+                  Priority:</p>
+                <span
+                  class="inline-flex rounded-full px-3 md:px-4 lg:px-6 py-1 md:py-1 lg:py-1.5 text-[9px] sm:text-[10px] md:text-xs lg:text-base font-semibold uppercase tracking-wider ${issueData.priority === "high" ? "bg-red-100 text-red-600" : issueData.priority === "medium" ? "bg-yellow-200 text-yellow-600" : "bg-gray-200 text-gray-400"}">${issueData.priority}</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="mt-4 sm:mt-4.5 md:mt-6 lg:mt-8 flex justify-end">
+            <form method="dialog" class="w-auto">
+              <button
+                class="btn w-auto h-auto border-0 bg-indigo-700 hover:bg-indigo-800 px-5 sm:px-6 md:px-7 lg:px-8 py-2 md:py-3 lg:py-3 text-sm sm:text-base md:text-lg font-semibold text-white rounded-lg lg:rounded-xl transition-all duration-200">Close</button>
+            </form>
+          </div>
+        </div>
+  `;
+  issueModal.appendChild(modalContent);
+  issueModal.showModal();
 };
 
 // call API to get all issues data

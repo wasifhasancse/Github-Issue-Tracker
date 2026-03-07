@@ -32,7 +32,8 @@
           src="./assets/github-logo.png" alt="GitHub Logo">GitHub Issues Tracker</a>
     </div>
 
-    <div class="navbar-end space-x-2.5 flex-1 flex-wrap md:flex-nowrap items-center justify-center md:justify-end w-full gap-2.5">
+    <div
+      class="navbar-end space-x-2.5 flex-1 flex-wrap md:flex-nowrap items-center justify-center md:justify-end w-full gap-2.5">
       <label class="input">
         <svg class="h-[1em] opacity-50" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
           <g stroke-linejoin="round" stroke-linecap="round" stroke-width="2.5" fill="none" stroke="currentColor">
@@ -93,77 +94,14 @@
       <!-- the issue list section start -->
       <div class="p-4 md:p-6">
         <div id="issue-card-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-
           <!-- the issue cards will be here dynamically from API -->
-
         </div>
       </div>
       <!-- the issue list section end -->
 
       <!-- the modal section start -->
       <dialog id="issueCardModal" class="modal modal-middle">
-        <div
-          class="modal-box w-[92%] sm:w-[85%] md:w-full max-w-md sm:max-w-xl md:max-w-2xl lg:max-w-3xl rounded-lg md:rounded-2xl bg-[#F8FAFC] p-4 sm:p-5 md:p-7 lg:p-8 shadow-lg">
-          <h3
-            class="text-lg sm:text-2xl md:text-3xl lg:text-4xl font-bold leading-tight md:leading-snug text-gray-900">
-            Fix broken image uploads
-          </h3>
-
-          <div
-            class="mt-3 sm:mt-3.5 md:mt-4 lg:mt-5 flex flex-wrap items-center gap-2 sm:gap-2.5 text-xs sm:text-sm md:text-base lg:text-lg text-gray-600">
-            <span
-              class="rounded-full bg-green-500 px-2.5 sm:px-3.5 md:px-4 lg:px-5 py-0.5 sm:py-0.5 md:py-1 lg:py-1.5 text-[10px] sm:text-xs md:text-sm lg:text-base font-semibold text-white">Opened</span>
-            <span class="text-gray-300 hidden sm:inline">&bull;</span>
-            <span class="text-[10px] sm:text-xs md:text-sm lg:text-base">Opened by Fahim Ahmed</span>
-            <span class="text-gray-300 hidden sm:inline">&bull;</span>
-            <span class="text-[10px] sm:text-xs md:text-sm lg:text-base">22/02/2026</span>
-          </div>
-
-          <div class="mt-3 sm:mt-3.5 md:mt-4 lg:mt-5 flex flex-wrap items-center gap-2 md:gap-2.5 lg:gap-3">
-            <span
-              class="inline-flex items-center gap-0.5 sm:gap-1 md:gap-1.5 lg:gap-2 rounded-full border-2 border-red-300 bg-red-100 px-2 sm:px-2.5 md:px-3.5 lg:px-4 py-0.5 sm:py-0.5 md:py-1 lg:py-1.5 text-[8px] sm:text-[9px] md:text-xs lg:text-sm font-semibold text-red-600 uppercase tracking-tight">
-              <i class="fa-solid fa-bug text-[6px] sm:text-[7px] md:text-[8px] lg:text-xs"></i>
-              BUG
-            </span>
-            <span
-              class="inline-flex items-center gap-0.5 sm:gap-1 md:gap-1.5 lg:gap-2 rounded-full border-2 border-yellow-300 bg-yellow-100 px-2 sm:px-2.5 md:px-3.5 lg:px-4 py-0.5 sm:py-0.5 md:py-1 lg:py-1.5 text-[8px] sm:text-[9px] md:text-xs lg:text-sm font-semibold text-yellow-600 uppercase tracking-tight">
-              <i class="fa-regular fa-circle-question text-[6px] sm:text-[7px] md:text-[8px] lg:text-xs"></i>
-              HELP WANTED
-            </span>
-          </div>
-
-          <p
-            class="mt-4 sm:mt-4.5 md:mt-6 lg:mt-7 text-xs sm:text-sm md:text-base lg:text-lg leading-relaxed md:leading-loose text-gray-600">
-            The navigation menu doesn't collapse properly on mobile devices. Need to fix the responsive behavior.
-          </p>
-
-          <div
-            class="mt-4 sm:mt-5 md:mt-6 lg:mt-8 rounded-lg md:rounded-xl lg:rounded-2xl bg-gray-100 p-3 sm:p-4 md:p-5 lg:p-6">
-            <div class="grid grid-cols-1 gap-3 md:gap-4 lg:gap-6 md:grid-cols-2">
-              <div>
-                <p
-                  class="text-[11px] sm:text-xs md:text-sm lg:text-lg text-gray-500 mb-1 md:mb-1.5 lg:mb-2 font-medium">
-                  Assignee:</p>
-                <p class="text-sm sm:text-base md:text-lg lg:text-xl font-bold text-gray-800">Fahim Ahmed
-                </p>
-              </div>
-              <div>
-                <p
-                  class="text-[11px] sm:text-xs md:text-sm lg:text-lg text-gray-500 mb-1 md:mb-1.5 lg:mb-2 font-medium">
-                  Priority:</p>
-                <span
-                  class="inline-flex rounded-full bg-red-500 px-3 md:px-4 lg:px-6 py-1 md:py-1 lg:py-1.5 text-[9px] sm:text-[10px] md:text-xs lg:text-base font-semibold text-white uppercase tracking-wider">HIGH</span>
-              </div>
-            </div>
-          </div>
-
-          <div class="mt-4 sm:mt-4.5 md:mt-6 lg:mt-8 flex justify-end">
-            <form method="dialog" class="w-auto">
-              <button
-                class="btn w-auto h-auto border-0 bg-indigo-700 hover:bg-indigo-800 px-5 sm:px-6 md:px-7 lg:px-8 py-2 md:py-3 lg:py-3 text-sm sm:text-base md:text-lg font-semibold text-white rounded-lg lg:rounded-xl transition-all duration-200">Close</button>
-            </form>
-          </div>
-        </div>
+        <!-- modal content will be here dynamically from API -->
       </dialog>
       <!-- the modal section end -->
 
@@ -172,7 +110,6 @@
 
   <!-- link js -->
   <script src="./js/index.js"></script>
-
 </body>
 
 </html>
