@@ -51,8 +51,10 @@
   <section class="bg-[#F8FAFC] py-10">
     <div class="bg-white w-11/12 mx-auto rounded-lg shadow-sm">
       <div class="flex items-center justify-start gap-2.5 p-6">
-        <button class="py-1.5 px-2.5 font-semibold bg-indigo-700 text-white rounded w-32 hover:bg-indigo-800">All</button>
-        <button class="py-1.5 px-2.5 font-semibold border-2 border-gray-300 text-gray-500 rounded w-32 hover:bg-gray-200">Open</button>
+        <button
+          class="py-1.5 px-2.5 font-semibold bg-indigo-700 text-white rounded w-32 hover:bg-indigo-800">All</button>
+        <button
+          class="py-1.5 px-2.5 font-semibold border-2 border-gray-300 text-gray-500 rounded w-32 hover:bg-gray-200">Open</button>
         <button
           class="py-1.5 px-2.5 font-semibold border-2 border-gray-300 text-gray-500 rounded w-32 hover:bg-gray-200">Closed</button>
       </div>
@@ -87,7 +89,7 @@
 
       <!-- the issue list section start -->
       <div class="p-6">
-        <div id="issue-list" class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-3">
+        <div id="issue-list" class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4">
 
           <!--High Priority Issue Card -->
           <div class="border-t-4 border-green-400 rounded-lg bg-white shadow-md overflow-hidden">
@@ -104,17 +106,16 @@
               <h3 class="text-lg font-semibold text-gray-900 mb-3">Fix Navigation Menu On Mobile Devices</h3>
 
               <!-- Description -->
-              <p class="text-gray-500 text-sm mb-4 line-clamp-2">The navigation menu doesn't collapse properly on mobile devices...
+              <p class="text-gray-500 text-sm mb-4 line-clamp-2">The navigation menu doesn't collapse properly on mobile
+                devices...
               </p>
 
               <!-- Labels -->
               <div class="flex flex-wrap gap-2">
-                <span
-                  class="bg-red-100 text-red-600 border-2 border-red-300 px-3 py-1.5 rounded-full">
+                <span class="bg-red-100 text-red-600 border-2 border-red-300 px-3 py-1.5 rounded-full">
                   <i class="fa-solid fa-bug"></i> BUG
                 </span>
-                <span
-                  class="bg-yellow-100 text-yellow-600 border-2 border-yellow-300 px-3 py-1.5 rounded-full">
+                <span class="bg-yellow-100 text-yellow-600 border-2 border-yellow-300 px-3 py-1.5 rounded-full">
                   <i class="fa-regular fa-circle-question"></i> HELP WANTED
                 </span>
               </div>
@@ -145,17 +146,16 @@
               <h3 class="text-lg font-semibold text-gray-900 mb-3">Fix Navigation Menu On Mobile Devices</h3>
 
               <!-- Description -->
-              <p class="text-gray-500 text-sm mb-4 line-clamp-2">The navigation menu doesn't collapse properly on mobile devices...
+              <p class="text-gray-500 text-sm mb-4 line-clamp-2">The navigation menu doesn't collapse properly on mobile
+                devices...
               </p>
 
               <!-- Labels -->
               <div class="flex flex-wrap gap-2">
-                <span
-                  class="bg-red-100 text-red-600 border-2 border-red-300 px-3 py-1.5 rounded-full">
+                <span class="bg-red-100 text-red-600 border-2 border-red-300 px-3 py-1.5 rounded-full">
                   <i class="fa-solid fa-bug"></i> BUG
                 </span>
-                <span
-                  class="bg-yellow-100 text-yellow-600 border-2 border-yellow-300 px-3 py-1.5 rounded-full">
+                <span class="bg-yellow-100 text-yellow-600 border-2 border-yellow-300 px-3 py-1.5 rounded-full">
                   <i class="fa-regular fa-circle-question"></i> HELP WANTED
                 </span>
               </div>
@@ -186,17 +186,16 @@
               <h3 class="text-lg font-semibold text-gray-900 mb-3">Fix Navigation Menu On Mobile Devices</h3>
 
               <!-- Description -->
-              <p class="text-gray-500 text-sm mb-4 line-clamp-2">The navigation menu doesn't collapse properly on mobile devices...
+              <p class="text-gray-500 text-sm mb-4 line-clamp-2">The navigation menu doesn't collapse properly on mobile
+                devices...
               </p>
 
               <!-- Labels -->
               <div class="flex flex-wrap gap-2">
-                <span
-                  class="bg-red-100 text-red-600 border-2 border-red-300 px-3 py-1.5 rounded-full">
+                <span class="bg-red-100 text-red-600 border-2 border-red-300 px-3 py-1.5 rounded-full">
                   <i class="fa-solid fa-bug"></i> BUG
                 </span>
-                <span
-                  class="bg-yellow-100 text-yellow-600 border-2 border-yellow-300 px-3 py-1.5 rounded-full">
+                <span class="bg-yellow-100 text-yellow-600 border-2 border-yellow-300 px-3 py-1.5 rounded-full">
                   <i class="fa-regular fa-circle-question"></i> HELP WANTED
                 </span>
               </div>
@@ -214,8 +213,62 @@
 
         </div>
       </div>
-
       <!-- the issue list section end -->
+
+      <!-- the modal section start -->
+      <button class="btn" onclick="issueCardModal.showModal()">open modal</button>
+      <dialog id="issueCardModal" class="modal">
+        <div class="modal-box w-11/12 max-w-3xl rounded-2xl bg-[#F8FAFC] p-6 md:p-8">
+          <h3 class="text-3xl font-bold leading-tight text-gray-950">Fix broken image uploads</h3>
+
+          <div class="mt-3 flex flex-wrap items-center gap-3 text-lg text-gray-500">
+            <span class="rounded-full bg-green-500 px-4 py-1 font-medium text-white">Opened</span>
+            <span class="text-gray-600">&bull;</span>
+            <span>Opened by Fahim Ahmed</span>
+            <span class="text-gray-600">&bull;</span>
+            <span>22/02/2026</span>
+          </div>
+
+          <div class="mt-5 flex flex-wrap items-center gap-3">
+            <span
+              class="inline-flex items-center gap-1.5 rounded-full border border-red-300 bg-red-100 px-3 py-1 text-sm font-medium text-red-600 uppercase">
+              <i class="fa-solid fa-bug text-xs"></i>
+              BUG
+            </span>
+            <span
+              class="inline-flex items-center gap-1.5 rounded-full border border-yellow-300 bg-yellow-100 px-3 py-1 text-sm font-medium text-yellow-600 uppercase">
+              <i class="fa-regular fa-circle-question text-xs"></i>
+              HELP WANTED
+            </span>
+          </div>
+
+          <p class="mt-7 leading-relaxed text-gray-500 md:text-lg">
+            The navigation menu doesn't collapse properly on mobile devices. Need to fix the responsive behavior.
+          </p>
+
+          <div class="mt-7 rounded-xl bg-gray-100 p-4 md:p-6">
+            <div class="grid grid-cols-1 gap-5 md:grid-cols-2">
+              <div>
+                <p class="text-gray-500 md:text-lg">Assignee:</p>
+                <p class="mt-1 font-semibold text-gray-800 md:text-lg">Fahim Ahmed</p>
+              </div>
+              <div>
+                <p class="text-gray-500 md:text-xl">Priority:</p>
+                <span
+                  class="mt-2 inline-flex rounded-full bg-red-500 px-5 py-1 text-base font-medium text-white">HIGH</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="mt-7 flex justify-end">
+            <form method="dialog">
+              <button
+                class="btn border-0 bg-indigo-700 px-7 py-6 text-xl font-medium text-white hover:bg-indigo-800">Close</button>
+            </form>
+          </div>
+        </div>
+      </dialog>
+      <!-- the modal section end -->
 
     </div>
   </section>
