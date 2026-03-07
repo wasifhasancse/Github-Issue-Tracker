@@ -60,7 +60,7 @@
   </section>
   <!-- Tab Section end -->
 
-  <section class="bg-[#F8FAFC]">
+  <section class="bg-[#F8FAFC] flow-root">
     <div class="bg-white w-11/12 mx-auto rounded-lg shadow-md mb-10">
 
       <!-- the issue count Section start -->
@@ -89,15 +89,97 @@
       <div class="p-6">
         <div id="issue-list" class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-3">
 
-          <!-- Issue Card -->
-          <div class="border-t-4 border-green-400 rounded-xl bg-white shadow-md overflow-hidden">
+          <!--High Priority Issue Card -->
+          <div class="border-t-4 border-green-400 rounded-lg bg-white shadow-md overflow-hidden">
             <div class="p-6">
               <!-- Icon and Priority Badge -->
-              <div class="flex items-start justify-between mb-4">
-                <div class="p-1 bg-green-100 rounded-full flex items-center justify-center">
+              <div class="flex items-center justify-between mb-4">
+                <div class="rounded-full flex items-center justify-center">
                   <img class="w-10 h-10" src="./assets/Open-Status.png" alt="Open Status">
                 </div>
                 <span class="bg-red-100 text-red-600 font-medium px-8 py-1 rounded-full">HIGH</span>
+              </div>
+
+              <!-- Title -->
+              <h3 class="text-lg font-semibold text-gray-900 mb-3">Fix Navigation Menu On Mobile Devices</h3>
+
+              <!-- Description -->
+              <p class="text-gray-500 text-sm mb-4 line-clamp-2">The navigation menu doesn't collapse properly on mobile devices...
+              </p>
+
+              <!-- Labels -->
+              <div class="flex flex-wrap gap-2">
+                <span
+                  class="bg-red-100 text-red-600 border-2 border-red-300 px-3 py-1.5 rounded-full">
+                  <i class="fa-solid fa-bug"></i> BUG
+                </span>
+                <span
+                  class="bg-yellow-100 text-yellow-600 border-2 border-yellow-300 px-3 py-1.5 rounded-full">
+                  <i class="fa-regular fa-circle-question"></i> HELP WANTED
+                </span>
+              </div>
+            </div>
+
+            <!-- Divider line -->
+            <div class="border-t-2 border-gray-200"></div>
+
+            <!-- Issue Number, Author and Date -->
+            <div class="p-6 pt-4">
+              <p class="text-sm text-gray-500 mb-1">#1 by john_doe</p>
+              <p class="text-sm text-gray-500">1/15/2024</p>
+            </div>
+          </div>
+
+          <!--Medium Priority Issue Card -->
+          <div class="border-t-4 border-green-400 rounded-lg bg-white shadow-md overflow-hidden">
+            <div class="p-6">
+              <!-- Icon and Priority Badge -->
+              <div class="flex items-center justify-between mb-4">
+                <div class="rounded-full flex items-center justify-center">
+                  <img class="w-10 h-10" src="./assets/Open-Status.png" alt="Open Status">
+                </div>
+                <span class="bg-yellow-100 text-yellow-600 font-medium px-8 py-1 rounded-full">MEDIUM</span>
+              </div>
+
+              <!-- Title -->
+              <h3 class="text-lg font-semibold text-gray-900 mb-3">Fix Navigation Menu On Mobile Devices</h3>
+
+              <!-- Description -->
+              <p class="text-gray-500 text-sm mb-4 line-clamp-2">The navigation menu doesn't collapse properly on mobile devices...
+              </p>
+
+              <!-- Labels -->
+              <div class="flex flex-wrap gap-2">
+                <span
+                  class="bg-red-100 text-red-600 border-2 border-red-300 px-3 py-1.5 rounded-full">
+                  <i class="fa-solid fa-bug"></i> BUG
+                </span>
+                <span
+                  class="bg-yellow-100 text-yellow-600 border-2 border-yellow-300 px-3 py-1.5 rounded-full">
+                  <i class="fa-regular fa-circle-question"></i> HELP WANTED
+                </span>
+              </div>
+            </div>
+
+            <!-- Divider line -->
+            <div class="border-t-2 border-gray-200"></div>
+
+            <!-- Issue Number, Author and Date -->
+            <div class="p-6 pt-4">
+              <p class="text-sm text-gray-500 mb-1">#1 by john_doe</p>
+              <p class="text-sm text-gray-500">1/15/2024</p>
+            </div>
+          </div>
+
+          <!--Low Priority Issue Card -->
+          <div class="border-t-4 border-purple-400 rounded-lg bg-white shadow-md overflow-hidden">
+            <div class="p-6">
+              <!-- Icon and Priority Badge -->
+              <div class="flex items-center justify-between mb-4">
+                <div class="rounded-full flex items-center justify-center">
+                  <img class="w-10 h-10" src="./assets/Closed- Status .png" alt="Closed Status">
+                </div>
+                <span class="bg-gray-100 text-gray-400 font-medium px-8 py-1 rounded-full">LOW</span>
               </div>
 
               <!-- Title -->
