@@ -55,7 +55,7 @@ const showAllIssues = (allIssuedata) => {
             <div class=" pt-4">
               <!-- Divider line -->
               <div class="border-t-2 border-gray-200"></div>
-              
+
               <div class="p-6">
               <p class="text-sm text-gray-500 mb-1">#${issueCardData.id} by ${issueCardData.author}</p>
               <p class="text-sm text-gray-500">${issueCardData.createdAt}</p>
@@ -201,6 +201,22 @@ const showIssueModal = async (issueId) => {
   issueModal.appendChild(modalContent);
   issueModal.showModal();
 };
+
+
+// search functionality
+const searchInput = document.getElementById("search-input");
+searchInput.addEventListener("input", async () => {
+  const searchValue = searchInput.value.toLowerCase();
+
+  // get data from API for search functionality
+  const response = await fetch(
+    `https://phi-lab-server.vercel.app/api/v1/lab/issues/search?q=${searchValue}`,
+  );
+
+  const data = await response.json();
+  console.log(data.data);
+  showAllIssues(data.data);
+});
 
 // call API to get all issues data
 getAllIssues();
