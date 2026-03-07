@@ -41,14 +41,7 @@ const showAllIssues = (allIssuedata) => {
               <p class="text-gray-500 text-sm mb-4 line-clamp-2">${issueCardData.description}</p>
 
               <!-- Labels -->
-              <div class="flex flex-wrap gap-2">
-                <span class="bg-red-100 text-red-600 border-2 border-red-300 px-3 py-1.5 rounded-full">
-                  <i class="fa-solid fa-bug"></i> BUG
-                </span>
-                <span class="bg-yellow-100 text-yellow-600 border-2 border-yellow-300 px-3 py-1.5 rounded-full">
-                  <i class="fa-regular fa-circle-question"></i> HELP WANTED
-                </span>
-              </div>
+              <div class="flex flex-wrap gap-2">${getLabels(issueCardData.labels)}</div>
             </div>
 
             <!-- Issue Number, Author and Date -->
@@ -65,6 +58,41 @@ const showAllIssues = (allIssuedata) => {
     `;
     allIssuesContainer.appendChild(issueCard);
   });
+};
+
+// get labels data
+const getLabels = (labelsData) => {
+  // console.log(labelsData);
+  const labels = labelsData.map(
+    (data) => {
+         if (data.toLowerCase() === "bug") {
+           return `<span class="bg-red-100 text-red-600 border-red-300 inline-flex items-center gap-0.5 sm:gap-1 md:gap-1.5 lg:gap-2 rounded-full border-2 px-2 sm:px-2.5 md:px-3 lg:px-4 py-1 lg:py-1.5 text-[8px] sm:text-[9px] md:text-xs lg:text-sm font-semibold uppercase tracking-tight">
+                  <i class="fa-solid fa-bug"></i> BUG
+                </span>`;
+         }
+         if (data.toLowerCase() === "help wanted") {
+           return `<span class="bg-yellow-100 text-yellow-600 border-yellow-300 inline-flex items-center gap-0.5 sm:gap-1 md:gap-1.5 lg:gap-2 rounded-full border-2 px-2 sm:px-2.5 md:px-3 lg:px-4 py-1 lg:py-1.5 text-[8px] sm:text-[9px] md:text-xs lg:text-sm font-semibold uppercase tracking-tight">
+                  <i class="fa-regular fa-life-ring"></i> HELP WANTED
+                </span>`;
+         }
+         if (data.toLowerCase() === "enhancement") {
+           return `<span class="bg-green-100 text-green-600 border-green-300 inline-flex items-center gap-0.5 sm:gap-1 md:gap-1.5 lg:gap-2 rounded-full border-2 px-2 sm:px-2.5 md:px-3 lg:px-4 py-1 lg:py-1.5 text-[8px] sm:text-[9px] md:text-xs lg:text-sm font-semibold uppercase tracking-tight">
+                  <i class="fa-solid fa-wand-magic-sparkles"></i> Enhancement
+                </span>`;
+         }
+         if (data.toLowerCase() === "documentation") {
+           return `<span class="bg-blue-100 text-blue-600 border-blue-300 inline-flex items-center gap-0.5 sm:gap-1 md:gap-1.5 lg:gap-2 rounded-full border-2 px-2 sm:px-2.5 md:px-3 lg:px-4 py-1 lg:py-1.5 text-[8px] sm:text-[9px] md:text-xs lg:text-sm font-semibold uppercase tracking-tight">
+                  <i class="fa-regular fa-file-lines"></i> Documentation
+                </span>`;
+         }
+         if (data.toLowerCase() === "good first issue") {
+           return `<span class="bg-purple-100 text-purple-600 border-purple-300 inline-flex items-center gap-0.5 sm:gap-1 md:gap-1.5 lg:gap-2 rounded-full border-2 px-2 sm:px-2.5 md:px-3 lg:px-4 py-1 lg:py-1.5 text-[8px] sm:text-[9px] md:text-xs lg:text-sm font-semibold uppercase tracking-tight">
+                  <i class="fa-solid fa-circle-exclamation"></i> Good First Issue
+                </span>`;
+         }
+     }
+  );
+  return labels.join(" ");
 };
 
 // get open issues data from API and display in open issues tab
@@ -151,18 +179,7 @@ const showIssueModal = async (issueId) => {
             <span class="text-[10px] sm:text-xs md:text-sm lg:text-base">${issueData.createdAt}</span>
           </div>
 
-          <div class="mt-3 sm:mt-3.5 md:mt-4 lg:mt-5 flex flex-wrap items-center gap-2 md:gap-2.5 lg:gap-3">
-            <span
-              class="inline-flex items-center gap-0.5 sm:gap-1 md:gap-1.5 lg:gap-2 rounded-full border-2 border-red-300 bg-red-100 px-2 sm:px-2.5 md:px-3.5 lg:px-4 py-0.5 sm:py-0.5 md:py-1 lg:py-1.5 text-[8px] sm:text-[9px] md:text-xs lg:text-sm font-semibold text-red-600 uppercase tracking-tight">
-              <i class="fa-solid fa-bug text-[6px] sm:text-[7px] md:text-[8px] lg:text-xs"></i>
-              BUG
-            </span>
-            <span
-              class="inline-flex items-center gap-0.5 sm:gap-1 md:gap-1.5 lg:gap-2 rounded-full border-2 border-yellow-300 bg-yellow-100 px-2 sm:px-2.5 md:px-3.5 lg:px-4 py-0.5 sm:py-0.5 md:py-1 lg:py-1.5 text-[8px] sm:text-[9px] md:text-xs lg:text-sm font-semibold text-yellow-600 uppercase tracking-tight">
-              <i class="fa-regular fa-circle-question text-[6px] sm:text-[7px] md:text-[8px] lg:text-xs"></i>
-              HELP WANTED
-            </span>
-          </div>
+          <div class="mt-3 sm:mt-3.5 md:mt-4 lg:mt-5 flex flex-wrap items-center gap-2 md:gap-2.5 lg:gap-3">${getLabels(issueData.labels)}</div>
 
           <p
             class="mt-4 sm:mt-4.5 md:mt-6 lg:mt-7 text-xs sm:text-sm md:text-base lg:text-lg leading-relaxed md:leading-loose text-gray-600">
@@ -202,7 +219,6 @@ const showIssueModal = async (issueId) => {
   issueModal.showModal();
 };
 
-
 // search functionality
 const searchInput = document.getElementById("search-input");
 searchInput.addEventListener("input", async () => {
@@ -214,7 +230,7 @@ searchInput.addEventListener("input", async () => {
   );
 
   const data = await response.json();
-  console.log(data.data);
+  removeTabActiveButton();
   showAllIssues(data.data);
 });
 
