@@ -195,7 +195,7 @@ const showIssueModal = async (issueId) => {
   const modalContent = document.createElement("div");
   modalContent.innerHTML = `
 
-        <div class="modal-box w-11/12 sm:w-[85%] md:w-full max-w-md sm:max-w-xl md:max-w-2xl lg:max-w-3xl rounded-lg md:rounded-2xl bg-[#F8FAFC] p-4 sm:p-5 md:p-7 lg:p-8 shadow-lg mx-auto">
+        <div class="modal-box w-11/12 sm:w-[85%] md:w-full sm:max-w-xl md:max-w-2xl lg:max-w-3xl rounded-lg md:rounded-2xl bg-[#F8FAFC] p-4 sm:p-5 md:p-7 lg:p-8 shadow-lg mx-auto">
           <h3
             class="text-lg sm:text-2xl md:text-3xl lg:text-4xl font-bold leading-tight md:leading-snug text-gray-900">
             ${issueData.title}
