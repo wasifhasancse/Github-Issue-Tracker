@@ -3,6 +3,15 @@ const issuesCount = document.getElementById("issues-count");
 // store all issues data from API
 let allIssuesData;
 
+// get format date from
+const getDateFormat = (getDate) => {
+  const date = new Date(getDate);
+  const day = String(date.getDate()).padStart(2, "0");
+  const month = String(date.getMonth() + 1).padStart(2, "0");
+  const year = date.getFullYear();
+  return `${day}/${month}/${year}`;
+};
+
 // loading bars
 const manageLoadingBars = (isLoading) => {
   const loadingBars = document.getElementById("loading-bars");
@@ -62,14 +71,14 @@ const showAllIssues = (allIssuedata) => {
               <!-- Divider line -->
               <div class="border-t-2 border-gray-200"></div>
 
-              <div class="p-6 flex items-center justify-between">
-                <div class="space-y-2">
-                  <p class="text-sm text-gray-500 mb-1">#${issueCardData.id} by ${issueCardData.author}</p>
-                  <p class="text-sm text-gray-500 mb-1">Assignee: ${issueCardData.assignee}</p>
-                </div>
-                <div class="space-y-1 text-right">
-                  <p class="text-sm text-gray-500">${issueCardData.createdAt}</p>
-                  <p class="text-sm text-gray-500">${issueCardData.updatedAt}</p>
+              <div class="p-6 space-y-2">
+                <div class="flex justify-between">
+                    <p class="text-sm text-gray-500 mb-1">#${issueCardData.id} by ${issueCardData.author}</p>
+                    <p class="text-sm text-gray-500">${getDateFormat(issueCardData.createdAt)}</p>
+                  </div>
+                  <div class="flex justify-between">
+                    <p class="text-sm text-gray-500 mb-1">Assignee: ${issueCardData.assignee.length === 0 ? "no one assignee" : issueCardData.assignee}</p>
+                    <p class="text-sm text-gray-500">${getDateFormat(issueCardData.updatedAt)}</p>
                 </div>
               </div>
             </div>
@@ -199,7 +208,7 @@ const showIssueModal = async (issueId) => {
             <span class="text-gray-600 hidden sm:inline">&bull;</span>
             <span class="text-[10px] sm:text-xs md:text-sm lg:text-base">Opened by ${issueData.author}</span>
             <span class="text-gray-600 hidden sm:inline">&bull;</span>
-            <span class="text-[10px] sm:text-xs md:text-sm lg:text-base">${issueData.createdAt}</span>
+            <span class="text-[10px] sm:text-xs md:text-sm lg:text-base">${getDateFormat(issueData.createdAt)}</span>
           </div>
 
           <div class="mt-3 sm:mt-3.5 md:mt-4 lg:mt-5 flex flex-wrap items-center gap-2 md:gap-2.5 lg:gap-3">${getLabels(issueData.labels)}</div>
@@ -211,7 +220,7 @@ const showIssueModal = async (issueId) => {
 
           <div
             class="mt-4 sm:mt-5 md:mt-6 lg:mt-8 rounded-lg md:rounded-xl lg:rounded-2xl bg-gray-100 p-3 sm:p-4 md:p-5 lg:p-6">
-            <div class="grid grid-cols-1 gap-3 md:gap-4 lg:gap-6 md:grid-cols-2">
+            <div class="grid grid-cols-2 gap-6">
               <div>
                 <p
                   class="text-[11px] sm:text-xs md:text-sm lg:text-lg text-gray-500 mb-1 md:mb-1.5 lg:mb-2 font-medium">
