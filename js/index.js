@@ -3,8 +3,21 @@ const issuesCount = document.getElementById("issues-count");
 // store all issues data from API
 let allIssuesData;
 
+// loading bars
+const manageLoadingBars = (isLoading) => {
+  const loadingBars = document.getElementById("loading-bars");
+  if (isLoading) {
+    loadingBars.classList.remove("hidden");
+    allIssuesContainer.classList.add("hidden");
+  } else {
+    loadingBars.classList.add("hidden");
+    allIssuesContainer.classList.remove("hidden");
+  }
+};
+
 // get all issues data from API
 const getAllIssues = async () => {
+  manageLoadingBars(true);
   const response = await fetch(
     "https://phi-lab-server.vercel.app/api/v1/lab/issues",
   );
@@ -49,66 +62,75 @@ const showAllIssues = (allIssuedata) => {
               <!-- Divider line -->
               <div class="border-t-2 border-gray-200"></div>
 
-              <div class="p-6">
-              <p class="text-sm text-gray-500 mb-1">#${issueCardData.id} by ${issueCardData.author}</p>
-              <p class="text-sm text-gray-500">${issueCardData.createdAt}</p>
+              <div class="p-6 flex items-center justify-between">
+                <div class="space-y-2">
+                  <p class="text-sm text-gray-500 mb-1">#${issueCardData.id} by ${issueCardData.author}</p>
+                  <p class="text-sm text-gray-500 mb-1">Assignee: ${issueCardData.assignee}</p>
+                </div>
+                <div class="space-y-1 text-right">
+                  <p class="text-sm text-gray-500">${issueCardData.createdAt}</p>
+                  <p class="text-sm text-gray-500">${issueCardData.updatedAt}</p>
+                </div>
               </div>
             </div>
           </div>
     `;
     allIssuesContainer.appendChild(issueCard);
+    manageLoadingBars(false);
   });
 };
 
 // get labels data
 const getLabels = (labelsData) => {
   // console.log(labelsData);
-  const labels = labelsData.map(
-    (data) => {
-         if (data.toLowerCase() === "bug") {
-           return `<span class="bg-red-100 text-red-600 border-red-300 inline-flex items-center gap-0.5 sm:gap-1 md:gap-1.5 lg:gap-2 rounded-full border-2 px-2 sm:px-2.5 md:px-3 lg:px-4 py-1 lg:py-1.5 text-[8px] sm:text-[9px] md:text-xs lg:text-sm font-semibold uppercase tracking-tight">
+  const labels = labelsData.map((data) => {
+    if (data.toLowerCase() === "bug") {
+      return `<span class="bg-red-100 text-red-600 border-red-300 inline-flex items-center gap-0.5 sm:gap-1 md:gap-1.5 lg:gap-2 rounded-full border-2 px-2 sm:px-2.5 md:px-3 lg:px-4 py-1 lg:py-1.5 text-[8px] sm:text-[9px] md:text-xs lg:text-sm font-semibold uppercase tracking-tight">
                   <i class="fa-solid fa-bug"></i> BUG
                 </span>`;
-         }
-         if (data.toLowerCase() === "help wanted") {
-           return `<span class="bg-yellow-100 text-yellow-600 border-yellow-300 inline-flex items-center gap-0.5 sm:gap-1 md:gap-1.5 lg:gap-2 rounded-full border-2 px-2 sm:px-2.5 md:px-3 lg:px-4 py-1 lg:py-1.5 text-[8px] sm:text-[9px] md:text-xs lg:text-sm font-semibold uppercase tracking-tight">
+    }
+    if (data.toLowerCase() === "help wanted") {
+      return `<span class="bg-yellow-100 text-yellow-600 border-yellow-300 inline-flex items-center gap-0.5 sm:gap-1 md:gap-1.5 lg:gap-2 rounded-full border-2 px-2 sm:px-2.5 md:px-3 lg:px-4 py-1 lg:py-1.5 text-[8px] sm:text-[9px] md:text-xs lg:text-sm font-semibold uppercase tracking-tight">
                   <i class="fa-regular fa-life-ring"></i> HELP WANTED
                 </span>`;
-         }
-         if (data.toLowerCase() === "enhancement") {
-           return `<span class="bg-green-100 text-green-600 border-green-300 inline-flex items-center gap-0.5 sm:gap-1 md:gap-1.5 lg:gap-2 rounded-full border-2 px-2 sm:px-2.5 md:px-3 lg:px-4 py-1 lg:py-1.5 text-[8px] sm:text-[9px] md:text-xs lg:text-sm font-semibold uppercase tracking-tight">
+    }
+    if (data.toLowerCase() === "enhancement") {
+      return `<span class="bg-green-100 text-green-600 border-green-300 inline-flex items-center gap-0.5 sm:gap-1 md:gap-1.5 lg:gap-2 rounded-full border-2 px-2 sm:px-2.5 md:px-3 lg:px-4 py-1 lg:py-1.5 text-[8px] sm:text-[9px] md:text-xs lg:text-sm font-semibold uppercase tracking-tight">
                   <i class="fa-solid fa-wand-magic-sparkles"></i> Enhancement
                 </span>`;
-         }
-         if (data.toLowerCase() === "documentation") {
-           return `<span class="bg-blue-100 text-blue-600 border-blue-300 inline-flex items-center gap-0.5 sm:gap-1 md:gap-1.5 lg:gap-2 rounded-full border-2 px-2 sm:px-2.5 md:px-3 lg:px-4 py-1 lg:py-1.5 text-[8px] sm:text-[9px] md:text-xs lg:text-sm font-semibold uppercase tracking-tight">
+    }
+    if (data.toLowerCase() === "documentation") {
+      return `<span class="bg-blue-100 text-blue-600 border-blue-300 inline-flex items-center gap-0.5 sm:gap-1 md:gap-1.5 lg:gap-2 rounded-full border-2 px-2 sm:px-2.5 md:px-3 lg:px-4 py-1 lg:py-1.5 text-[8px] sm:text-[9px] md:text-xs lg:text-sm font-semibold uppercase tracking-tight">
                   <i class="fa-regular fa-file-lines"></i> Documentation
                 </span>`;
-         }
-         if (data.toLowerCase() === "good first issue") {
-           return `<span class="bg-purple-100 text-purple-600 border-purple-300 inline-flex items-center gap-0.5 sm:gap-1 md:gap-1.5 lg:gap-2 rounded-full border-2 px-2 sm:px-2.5 md:px-3 lg:px-4 py-1 lg:py-1.5 text-[8px] sm:text-[9px] md:text-xs lg:text-sm font-semibold uppercase tracking-tight">
+    }
+    if (data.toLowerCase() === "good first issue") {
+      return `<span class="bg-purple-100 text-purple-600 border-purple-300 inline-flex items-center gap-0.5 sm:gap-1 md:gap-1.5 lg:gap-2 rounded-full border-2 px-2 sm:px-2.5 md:px-3 lg:px-4 py-1 lg:py-1.5 text-[8px] sm:text-[9px] md:text-xs lg:text-sm font-semibold uppercase tracking-tight">
                   <i class="fa-solid fa-circle-exclamation"></i> Good First Issue
                 </span>`;
-         }
-     }
-  );
+    }
+  });
   return labels.join(" ");
 };
 
 // get open issues data from API and display in open issues tab
 const getOpenIssues = () => {
+  manageLoadingBars(true);
   // filter the all issues data based on the status and display only open issues
   const openIssues = allIssuesData.filter((issue) => issue.status === "open");
   showAllIssues(openIssues);
+  manageLoadingBars(false);
 };
 
 // get closed issues data from API and display in closed issues tab
 const getClosedIssues = () => {
+  manageLoadingBars(true);
   // filter the all issues data based on the status and display only closed issues
   const closedIssues = allIssuesData.filter(
     (issue) => issue.status === "closed",
   );
   showAllIssues(closedIssues);
+  manageLoadingBars(false);
 };
 
 // remove active class from all tab buttons
@@ -149,6 +171,7 @@ const activeTabButton = (buttonId) => {
 
 // get modal data from API and display in modal
 const showIssueModal = async (issueId) => {
+  manageLoadingBars(true);
   // get issue data from API based on the clicked issue card
   const response = await fetch(
     `https://phi-lab-server.vercel.app/api/v1/lab/issue/${issueId}`,
@@ -217,12 +240,19 @@ const showIssueModal = async (issueId) => {
   `;
   issueModal.appendChild(modalContent);
   issueModal.showModal();
+  manageLoadingBars(false);
 };
 
 // search functionality
 const searchInput = document.getElementById("search-input");
 searchInput.addEventListener("input", async () => {
   const searchValue = searchInput.value.toLowerCase();
+  manageLoadingBars(true);
+  if (searchValue === "") {
+    showAllIssues(allIssuesData);
+    manageLoadingBars(false);
+    return;
+  }
 
   // get data from API for search functionality
   const response = await fetch(
@@ -232,6 +262,7 @@ searchInput.addEventListener("input", async () => {
   const data = await response.json();
   removeTabActiveButton();
   showAllIssues(data.data);
+  manageLoadingBars(false);
 });
 
 // call API to get all issues data

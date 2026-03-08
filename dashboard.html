@@ -34,7 +34,7 @@
 
     <div
       class="navbar-end space-x-2.5 flex-1 flex-wrap md:flex-nowrap items-center justify-center md:justify-end w-full gap-2.5">
-      <label class="input">
+      <label class="input hover:border-indigo-300 focus:border-indigo-500 focus:outline-indigo-400 focus:ring-indigo-500">
         <svg class="h-[1em] opacity-50" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
           <g stroke-linejoin="round" stroke-linecap="round" stroke-width="2.5" fill="none" stroke="currentColor">
             <circle cx="11" cy="11" r="8"></circle>
@@ -96,6 +96,8 @@
         <div id="issue-card-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
           <!-- the issue cards will be here dynamically from API -->
         </div>
+        <!-- loading bars -->
+        <div id="loading-bars" class="flex items-center justify-center"><span class="loading loading-bars loading-xl bg-primary"></span></div>
       </div>
       <!-- the issue list section end -->
 
