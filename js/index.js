@@ -73,12 +73,12 @@ const showAllIssues = (allIssuedata) => {
 
               <div class="p-6 space-y-2">
                 <div class="flex justify-between">
-                    <p class="text-sm text-gray-500 mb-1">#${issueCardData.id} by ${issueCardData.author}</p>
-                    <p class="text-sm text-gray-500">${getDateFormat(issueCardData.createdAt)}</p>
+                    <p class="text-[12px] text-gray-500 mb-1">#${issueCardData.id} by ${issueCardData.author}</p>
+                    <p class="text-[12px] text-gray-500">${getDateFormat(issueCardData.createdAt)}</p>
                   </div>
                   <div class="flex justify-between">
-                    <p class="text-sm text-gray-500 mb-1">Assignee: ${issueCardData.assignee.length === 0 ? "no one assignee" : issueCardData.assignee}</p>
-                    <p class="text-sm text-gray-500">${getDateFormat(issueCardData.updatedAt)}</p>
+                    <p class="text-[12px] text-gray-500 mb-1">Assignee: ${issueCardData.assignee.length === 0 ? "Unassigned" : issueCardData.assignee}</p>
+                    <p class="text-[12px] text-gray-500">Updated: ${getDateFormat(issueCardData.updatedAt)}</p>
                 </div>
               </div>
             </div>
@@ -180,7 +180,6 @@ const activeTabButton = (buttonId) => {
 
 // get modal data from API and display in modal
 const showIssueModal = async (issueId) => {
-  manageLoadingBars(true);
   // get issue data from API based on the clicked issue card
   const response = await fetch(
     `https://phi-lab-server.vercel.app/api/v1/lab/issue/${issueId}`,
@@ -226,7 +225,7 @@ const showIssueModal = async (issueId) => {
                   class="text-[11px] sm:text-xs md:text-sm lg:text-lg text-gray-500 mb-1 md:mb-1.5 lg:mb-2 font-medium">
                   Assignee:</p>
                 <p class="text-sm sm:text-base md:text-lg lg:text-xl font-bold text-gray-800">
-                  ${issueData.assignee.length === 0 ? "No One Assignee" : issueData.assignee}
+                  ${issueData.assignee.length === 0 ? "Unassigned" : issueData.assignee}
                 </p>
               </div>
               <div>
@@ -249,7 +248,6 @@ const showIssueModal = async (issueId) => {
   `;
   issueModal.appendChild(modalContent);
   issueModal.showModal();
-  manageLoadingBars(false);
 };
 
 // search functionality
